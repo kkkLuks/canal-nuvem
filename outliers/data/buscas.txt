@@ -1,0 +1,18 @@
+# buscas de canais de referência (100 unidades de cota cada). Formato: "longo|termo" ou "short|termo".
+# A rotina diária roda 6 por dia em rodízio.
+longo|a história da empresa
+longo|ascensão e queda da empresa
+longo|como essa empresa faliu
+longo|o que aconteceu com a empresa
+longo|a história de como ficou bilionário
+longo|maior fraude financeira da história
+longo|história do dinheiro
+longo|por que essa empresa quebrou
+longo|história das Americanas
+longo|como o Brasil perdeu dinheiro
+longo|bolha financeira história
+longo|caso de negócio explicado
+short|história de empresa
+short|curiosidades sobre empresas
+short|como ele ficou rico
+short|empresa que faliu

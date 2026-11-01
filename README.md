@@ -24,4 +24,5 @@ Projeto para gerar e transmitir vídeos/lives **24 horas por dia** inteiramente 
 - [x] Definir o tema/nicho do canal : finanças e histórias de negócios, em português
 - [ ] Fazer o primeiro vídeo piloto e medir custo de voz por minuto
 - [ ] Configurar OAuth do YouTube para upload
+- [ ] Rodar a busca de outliers (`outliers/nicho.py`) num ambiente com `YT_API_KEY`
 - [ ] Documentar como colocar a chave de stream com segurança (variável de ambiente, nunca no repositório)
