@@ -38,7 +38,7 @@ MP4 + título + descrição + thumbnail ─► revisão do Luks (fase 1) ─► 
 
 ## Fases
 
-- **Fase 1 (agora):** um canal, em português, nicho sugerido mistérios/história narrada. Vídeos produzidos sob demanda, com aprovação manual. Medir custo e tempo por vídeo.
+- **Fase 1 (agora):** um canal, em português, nicho finanças e histórias de negócios. Vídeos produzidos sob demanda, com aprovação manual. Medir custo e tempo por vídeo.
 - **Fase 2:** rotina agendada (busca de outliers diária + fila de roteiros), ainda com aprovação.
 - **Fase 3:** publicação automática diária, vários canais, shorts derivados dos vídeos longos.
 

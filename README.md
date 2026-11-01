@@ -21,7 +21,7 @@ Projeto para gerar e transmitir vídeos/lives **24 horas por dia** inteiramente 
 - [ ] Escolher o provedor de nuvem
 - [ ] Criar script de transmissão 24h com FFmpeg
 - [ ] Configurar reinício automático
-- [ ] Definir o tema/nicho do canal (sugestão: mistérios/história narrada, em português)
+- [x] Definir o tema/nicho do canal : finanças e histórias de negócios, em português
 - [ ] Fazer o primeiro vídeo piloto e medir custo de voz por minuto
 - [ ] Configurar OAuth do YouTube para upload
 - [ ] Documentar como colocar a chave de stream com segurança (variável de ambiente, nunca no repositório)
