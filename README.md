@@ -14,12 +14,14 @@ Projeto para gerar e transmitir vídeos/lives **24 horas por dia** inteiramente 
 2. **FFmpeg** fazendo loop de uma playlist de vídeos e enviando via RTMP para o YouTube Live.
 3. **Supervisor/systemd** para reiniciar a live automaticamente se cair.
 4. **Pasta de conteúdo** (no próprio servidor ou em armazenamento de objetos) com os vídeos que entram na rotação.
-5. (Futuro) Geração automática de vídeos novos com ferramentas de IA e agendamento.
+5. Produção dos vídeos (outliers → roteiro → voz no Higgsfield → footage grátis → montagem no HyperFrames → upload via OAuth). Detalhes em [docs/PIPELINE.md](docs/PIPELINE.md).
 
 ## Próximos passos
 
 - [ ] Escolher o provedor de nuvem
 - [ ] Criar script de transmissão 24h com FFmpeg
 - [ ] Configurar reinício automático
-- [ ] Definir o tema/nicho do canal e o conteúdo da playlist
+- [ ] Definir o tema/nicho do canal (sugestão: mistérios/história narrada, em português)
+- [ ] Fazer o primeiro vídeo piloto e medir custo de voz por minuto
+- [ ] Configurar OAuth do YouTube para upload
 - [ ] Documentar como colocar a chave de stream com segurança (variável de ambiente, nunca no repositório)
