@@ -11,7 +11,7 @@ Só biblioteca padrão do Python. A chave fica na variável de ambiente YT_API_K
 Opções: --idioma pt (filtra títulos/canais), --min-views 10000, --min-ratio 2.5, --buscas 6 (por dia, em rodízio).
 Banco: work/nicho.sqlite. Saída: out/. Cota diária: NICHO_QUOTA (padrão 9000 de 10000).
 """
-import json, os, re, sqlite3, statistics, sys, urllib.error, urllib.parse, urllib.request
+import json, os, re, sqlite3, statistics, sys, threading, urllib.error, urllib.parse, urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -33,7 +33,8 @@ RUIDO = re.compile(r'\blive\b|ao vivo|\bcorte\b|cortes|podcast|#\d+ ?ep|epis[oó
 
 # ------------------------------------------------------------------ banco
 WORK.mkdir(exist_ok=True); OUT.mkdir(exist_ok=True)
-db = sqlite3.connect(os.environ.get('NICHO_DB', WORK / 'nicho.sqlite')); db.row_factory = sqlite3.Row
+db = sqlite3.connect(os.environ.get('NICHO_DB', WORK / 'nicho.sqlite'), check_same_thread=False); db.row_factory = sqlite3.Row
+LOCK = threading.Lock()   # o scan chama a API em 8 threads; banco e contador de cota passam por aqui
 db.executescript('''
 create table if not exists channels(id text primary key, title text, handle text, subs integer, lang text, country text,
   source text, added_utc text, scan_utc text, status text default 'active');
@@ -53,10 +54,11 @@ def commit_units():
 # ------------------------------------------------------------------ API
 def api(route, cost=1, **kw):
     global units
-    if used() + cost > QUOTA: raise RuntimeError(f'cota do dia esgotada ({used()}/{QUOTA})')
     key = os.environ.get('YT_API_KEY') or sys.exit('YT_API_KEY ausente no ambiente')
+    with LOCK:
+        if used() + cost > QUOTA: raise RuntimeError(f'cota do dia esgotada ({used()}/{QUOTA})')
+        units += cost
     q = urllib.parse.urlencode({k: v for k, v in kw.items() if v not in (None, '')} | {'key': key})
-    units += cost
     for tent in range(3):
         try:
             with urllib.request.urlopen(f'https://www.googleapis.com/youtube/v3/{route}?{q}', timeout=90) as r: return json.loads(r.read())
